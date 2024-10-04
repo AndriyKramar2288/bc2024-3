@@ -58,7 +58,13 @@ function main() {
 	const options = preparing_result[0];
 	const input_string = preparing_result[1];
 
-	const output_string = ":)";
+	let jsonische = JSON.parse(input_string);
+	jsonische = jsonische.filter((element) => element["parent"] == "BS3_BanksLiab");
+	let output_string = "";
+	for (let item of jsonische) {
+		output_string += `${item["txten"]}:${item["value"]}\n`;
+	}
+
 	ending(options, output_string);
 }
 
