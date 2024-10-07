@@ -27,15 +27,13 @@ function preparing() {
 	if (!options.input) {
 		throw Error("Please, specify input file");
 	}
-	// змінна для вхідних даних
-	let input_string = null;	
-	try {
-		input_string = fs.readFileSync(options.input);
-	}
-	catch (ENOENT) { // разі некоректно введеного шляху, буде така помилка
+	// перевірка існування файлу
+	if (!fs.existsSync(options.input)) {
 		throw Error("Cannot find input file");
 	}
-
+	// змінна для вхідних даних	
+	const input_string = fs.readFileSync(options.input);
+	
 	return [options, input_string];	
 }
 
